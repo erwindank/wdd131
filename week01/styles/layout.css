@@ -4,8 +4,9 @@
 }
 
 body {
-    display: grid;
-    grid-template-areas: auto 1fr auto / auto 1fr auto;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  grid-template-columns: auto 1fr auto;
 }
 
 header {
