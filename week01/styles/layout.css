@@ -6,7 +6,8 @@
 body {
   display: grid;
   grid-template-rows: auto 1fr auto;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: 200px 1fr 200px;
+  height: 100vh;
 }
 
 header {
@@ -16,11 +17,9 @@ header {
 
 h1 {
   color: #ffffff;
-  background-color: #333333;
-  padding: 1rem;
-  padding-bottom: 4rem;
+  padding: 1rem 1rem 4rem;
   text-align: left;
-  font-size: larger;
+  font-size: 1.5rem;
   font-family: 'Times New Roman', Times, serif;
 }
 
@@ -33,19 +32,17 @@ nav {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  padding: 0.2rem;
+  padding: 1rem;
   font-family: Arial, Helvetica, sans-serif;  
 }
 
 .navigation li {
-  flex: 1 1 auto;
-  /* What is the difference between auto and 100% flex-basis? - turn on link borders to view */
+  flex: auto;
 }
 
 .navigation a {
   display: block;
-  color: #ffffff;
-  padding: 0.75rem;
+  color: #fff;
   text-decoration: none;
   text-align: center;
 }
@@ -59,54 +56,25 @@ nav {
 .left-sidebar {
   background: #cccccc;
   grid-column: 1 / 2;
+  padding: 1rem;
 }
 
 main {
   background: #cccccc;
   grid-column: 2 / 3;
+  padding: 1rem;
 }
 
 .right-sidebar {
   background: #ffffff;
   grid-column: 3 / 4;
+  padding: 1rem;
 }
 
 footer {
   background: #333333;
-  padding: 2rem;
+  padding: 1rem 1rem 4rem;
   text-align: center;
   grid-column: 1 / 4;
   color: #fff;
-}
-
-.left-sidebar,
-.right-sidebar {
-    padding: 1rem;
-}
-
-.left-sidebar {
-  background: #cccccc;
-  grid-column: 1 / 2;
-}
-
-main {
-  background: #cccccc;
-  grid-column: 2 / 3;
-}
-
-.right-sidebar {
-  background: #ffffff;
-  grid-column: 3 / 4;
-}
-
-footer {
-  background: #333333;
-  padding: 2rem;
-  text-align: center;
-  grid-column: 1 / 4;
-}
-
-.left-sidebar,
-.right-sidebar {
-    padding: 1rem;
 }
