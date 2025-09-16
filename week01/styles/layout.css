@@ -11,6 +11,7 @@ body {
 
 header {
   grid-column: 1 / 4;
+  background: #333333;
 }
 
 h1 {
