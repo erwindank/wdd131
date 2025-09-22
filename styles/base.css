@@ -6,30 +6,30 @@
 }
 
 body {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  line-height: 1.6;
-  background-color: #fff;
-  color: #222;
-  display: flex;
-  flex-direction: column;
+  background-color: #ffffff;
   min-height: 100vh;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+
 }
 
 /* === Header === */
 header {
+  width: 100%;
+  box-sizing: border-box;
   background-color: #003366;
   /* dark blue */
-  color: #fff;
+  color: #ffffff;
   text-align: center;
-  padding: 1rem;
+  grid-column: 1 / -1.5rem;
 }
 
 #course-title {
   font-size: 1.5rem;
   font-weight: bold;
+  padding: 1rem;
   display: block;
-  /* force it onto its own line */
   margin-bottom: 0.5rem;
+  font-family:'Courier New', Courier, monospace
 }
 
 /* === Navigation === */
@@ -37,14 +37,19 @@ nav ul {
   display: flex;
   justify-content: center;
   list-style: none;
-  gap: 2rem;
+  gap: 5rem;
+  padding: 0.5rem 0;
+  background-color: #000000;
+  border-bottom: 2px solid #003366;
 }
 
 nav a {
-  color: #fff;
+  color: #ffffff;
   text-decoration: none;
   font-weight: 500;
   transition: color 0.3s ease, border-bottom 0.3s ease;
+  padding-bottom: 0.2rem;
+  font-size: 1.1rem;
 }
 
 nav a:hover {
@@ -55,20 +60,50 @@ nav a:hover {
 
 /* === Main Content === */
 main {
-  max-width: 1100px;
+  max-width: 1100px;   /* or 1000px, adjust as you like */
   margin: 2rem auto;
   padding: 1rem;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
+}
+
+.about-me {
+  grid-column: 1 / span 2;
+  padding: 1rem;
+}
+
+.my-interests {
+  grid-column: 3 / span 1;
+  padding: 1rem;
 }
 
 main h1 {
   grid-column: 1 / -1;
   text-align: center;
   margin-bottom: 1rem;
-  font-size: 2rem;
+  font-size: 3rem;
   color: #003366;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+main p {
+  line-height: 1.6;
+  color: #333333;
+  font-size: 1.1rem;
+  margin-top: 0.5rem;
+  text-align: justify;
+  letter-spacing: 0.5px;
+  word-spacing: 1px;
+  margin-bottom: 1rem;
+  hyphens: auto;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  border: 1px solid #e0e0e0;
 }
 
 /* === Card Sections === */
@@ -78,6 +113,16 @@ main h1 {
   border-radius: 8px;
   padding: 1.5rem;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+  color: #333333;
+  line-height: 1.6;
+  hyphens: auto;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  word-spacing: 1px;
+  letter-spacing: 0.5px;
 }
 
 .card h2 {
@@ -87,23 +132,38 @@ main h1 {
   border-radius: 6px 6px 0 0;
   margin: -1.5rem -1.5rem 1rem -1.5rem;
   font-size: 1.25rem;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1rem;
 }
 
 .card img {
-  max-width: 100%;
+  max-width: 320px;
   height: auto;
   margin: 0.5rem 0 1rem;
   border-radius: 4px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto; 
+}
+
+.card:hover {
+  transform: translateY(-20px);
+  box-shadow: 0 5px 50px rgba(28, 31, 253, 0.2);
 }
 
 /* === Footer === */
 footer {
-  margin-top: auto;
+  margin: 0 auto;
   background-color: #003366;
-  color: #fff;
+  color: #ffffff;
   text-align: center;
-  padding: 1rem;
+  padding: 1.22rem;
   font-size: 0.9rem;
+  grid-column: 1 / -1;
+  box-sizing: border-box;
+  border-top: 2px solid #ffd700;
+  font-family: 'Courier New', Courier, monospace;
 }
 
 footer span {
@@ -113,4 +173,22 @@ footer span {
 #lastModified {
   color: #ffd700;
   margin-top: 0.5rem;
+  display: block;
+}
+
+/* Responsive: stack on small screens */
+@media (max-width: 900px) {
+  main {
+    grid-template-columns: 1fr;
+  }
+
+  .about-me,
+  .my-interests {
+    grid-column: 1 / -1;
+  }
+
+  .card img {
+    max-width: 250px;
+    width: 100%;
+  }
 }
