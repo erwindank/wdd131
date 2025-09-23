@@ -20,7 +20,7 @@ header {
   /* dark blue */
   color: #ffffff;
   text-align: center;
-  grid-column: 1 / -1.5rem;
+  grid-column: 1 / 4;
 }
 
 #course-title {
@@ -160,7 +160,7 @@ footer {
   text-align: center;
   padding: 1.22rem;
   font-size: 0.9rem;
-  grid-column: 1 / -1;
+  grid-column: 1 / 4;
   box-sizing: border-box;
   border-top: 2px solid #ffd700;
   font-family: 'Courier New', Courier, monospace;
