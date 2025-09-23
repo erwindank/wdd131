@@ -97,8 +97,6 @@ main p {
   margin-bottom: 1rem;
   hyphens: auto;
   text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   padding: 1rem;
   border-radius: 8px;
@@ -119,8 +117,6 @@ main p {
   line-height: 1.6;
   hyphens: auto;
   text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   word-spacing: 1px;
   letter-spacing: 0.5px;
 }
