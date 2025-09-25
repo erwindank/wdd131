@@ -1,0 +1,81 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.5;
+    background-color: #f9f9f9;
+    color: #333;
+    padding: 1rem;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+}
+
+nav a {
+    text-decoration: none;
+    color: #0077cc;
+}
+
+main h1 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+/* Figures stack vertically on mobile */
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+figure {
+    text-align: center;
+}
+
+figure img {
+    width: 100%;
+    height: auto;
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+figcaption {
+    margin-top: 0.5rem;
+    font-weight: bold;
+}
+
+footer {
+    text-align: center;
+    margin-top: 2rem;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+figure {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+figure:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+figure:hover figcaption {
+    color: #0077cc;
+}
