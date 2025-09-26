@@ -31,6 +31,11 @@ nav a {
     color: #0077cc;
 }
 
+nav a:hover {
+    color: #0055aa;
+    text-decoration: underline;
+}
+
 main h1 {
     text-align: center;
     margin-bottom: 1.5rem;
