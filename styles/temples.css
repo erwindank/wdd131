@@ -33,6 +33,14 @@ header h1 {
     margin-left: 1rem;
 }   
 
+#menu-toggle {
+    display: none;
+    font-size: 2rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
 nav ul {
     list-style: none;
     display: flex;
