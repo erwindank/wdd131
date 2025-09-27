@@ -79,7 +79,6 @@ figure {
     border-radius: 8px; 
     box-shadow: 0 2px 4px rgba(202, 195, 131, 0.1);
     transition: box-shadow 0.3s ease;
-    max-width: 1200px;  
     margin: 0 auto;
     width: 100%;
 }
