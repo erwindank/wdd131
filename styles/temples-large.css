@@ -40,4 +40,16 @@
         display: flex;   /* visible when toggled */
     }
 }
+
+/* Always show nav on larger screens */
+@media (min-width: 768px) {
+    #nav-menu {
+        display: block !important;
+    }
+
+    #menu-toggle {
+        display: none;
+        /* Hide hamburger */
+    }
+}
 }

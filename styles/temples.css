@@ -33,12 +33,27 @@ header h1 {
     margin-left: 1rem;
 }   
 
-#menu-toggle {
+/* Hide nav menu by default on mobile */
+#nav-menu {
     display: none;
-    font-size: 2rem;
+}
+
+/* Show it when .show class is toggled */
+#nav-menu.show {
+    display: block;
+}
+
+/* Style hamburger button */
+#menu-toggle {
     background: none;
     border: none;
+    font-size: 2rem;
     cursor: pointer;
+    color: #ffffff;
+    margin-right: 0.5rem;
+    font-family: 'Georgia', serif;
+    font-weight: bold;
+    padding: 0;
 }
 
 nav ul {
