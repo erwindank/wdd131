@@ -18,7 +18,7 @@ header {
     justify-content: space-between;
     text-align: center;
     margin-bottom: 2rem;
-    background-color: #d3d1b4;
+    background-color: #6c6501;
     padding: 1rem;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(206, 184, 22, 0.1);
@@ -27,11 +27,34 @@ header {
 
 header h1 {
     font-size: 2rem;
-    color: #686607;
+    color: #ffffff;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
     font-weight: bold;
     margin-left: 1rem;
 }   
+
+/* Hide nav menu by default on mobile */
+#nav-menu {
+    display: none;
+}
+
+/* Show it when .show class is toggled */
+#nav-menu.show {
+    display: block;
+}
+
+/* Style hamburger button */
+#menu-toggle {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: #ffffff;
+    margin-right: 0.5rem;
+    font-family: 'Georgia', serif;
+    font-weight: bold;
+    padding: 0;
+}
 
 nav ul {
     list-style: none;
@@ -45,7 +68,7 @@ nav ul {
 
 nav a {
     text-decoration: none;
-    color: #6b6d01;
+    color: #ffffff;
     font-weight: bold;
     transition: color 0.3s ease;
 }
@@ -79,7 +102,6 @@ figure {
     border-radius: 8px; 
     box-shadow: 0 2px 4px rgba(202, 195, 131, 0.1);
     transition: box-shadow 0.3s ease;
-    max-width: auto;
     margin: 0 auto;
     width: 100%;
 }
