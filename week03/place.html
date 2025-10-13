@@ -3,18 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WDD 131 - Madagascar</title>
-    <meta name="description" content="Media query learning activity example page.">
+    <title>WDD 131 - Guatemala</title>
+    <meta name="description" content="Explore Guatemala - Land of Eternal Spring with beautiful landscapes and rich culture.">
     <meta name="author" content="Erwin Solorzano">
     <!-- Google Fonts: Roboto -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <!-- CSS Files -->
-    <link rel="stylesheet" href="styles/media-query.css">
-    <link rel="stylesheet" href="styles/media-query-large.css">
+    <link rel="stylesheet" href="styles/place.css">
+    <script defer src="scripts/place.js"></script>
 </head>
 <body>
+    <header>
+        <h1>Guatemala</h1>
+        <p>Land of Eternal Spring</p>
+    </header>
     
+    <main>
+        <!-- Hero Image Section -->
+        <section class="hero">
+            <picture>
+                <source srcset="images/hero-large.webp" media="(min-width: 1000px)">
+                <source srcset="images/hero-medium.webp" media="(min-width: 500px)">
+                <img src="images/hero-small.webp" alt="Beautiful landscape of Guatemala showing volcanic mountains" width="500" height="250">
+            </picture>
+        </section>
+
+        <!-- About Section -->
+        <section class="about">
+            <h2>About Guatemala</h2>
+            <p>Guatemala is a Central American country known for its dramatic landscape of volcanic mountains, lush rainforests, and ancient Mayan ruins. The country is often called the "Land of Eternal Spring" due to its pleasant climate year-round.</p>
+            <p>From the colonial charm of Antigua to the mystical Lake Atitlán surrounded by volcanoes, Guatemala offers breathtaking natural beauty and rich cultural heritage.</p>
+        </section>
+
+        <!-- Weather Section -->
+        <section class="weather">
+            <h2>Weather</h2>
+            <div class="weather-icon-mobile">⛅</div>
+            <div class="weather-info">
+                <p><strong>Temperature:</strong> <span id="temperature">20</span>°C</p>
+                <p><strong>Conditions:</strong> Partly Cloudy</p>
+                <p><strong>Wind Speed:</strong> <span id="wind-speed">5</span> km/h</p>
+                <p><strong>Wind Chill:</strong> <span id="windchill"></span></p>
+            </div>
+        </section>
+
+        <!-- Attractions Section -->
+        <section class="attractions">
+            <h2>Top Attractions</h2>
+            <ul>
+                <li>Tikal National Park - Ancient Mayan Ruins</li>
+                <li>Lake Atitlán - Stunning volcanic lake</li>
+                <li>Antigua Guatemala - Colonial architecture</li>
+                <li>Pacaya Volcano - Active volcano hikes</li>
+                <li>Semuc Champey - Natural limestone pools</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; <span id="currentyear"></span> Guatemala Tourism | Erwin Solorzano</p>
+        <p id="lastModified"></p>
+    </footer>
 </body>
 </html>
