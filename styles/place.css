@@ -36,13 +36,14 @@ header {
     position: relative;
     overflow: hidden;
 
-    padding: calc(var(--spacing-large) + 0.5rem);
+    padding: calc(var(--spacing-large) + 0.2rem);
 
     /* centered, smaller "faded" box using a semi-transparent background layer */
     background-image: linear-gradient(rgba(255, 255, 255, 0.861), rgba(255, 255, 255, 0.637));
     background-repeat: no-repeat;
     background-position: center;
     background-size: min(900px, 85%) calc(100% - 2rem);
+
 
     /* subtle inner border and depth */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.04);
