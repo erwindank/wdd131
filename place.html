@@ -17,12 +17,6 @@
 </head>
 <body>
     <header>
-        <svg class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="50" height="50" aria-labelledby="logoTitle logoDesc" role="img">
-            <title id="logoTitle">Guatemala Logo</title>
-            <desc id="logoDesc">A stylized representation of a quetzal bird, the national bird of Guatemala, perched on a branch with a circular background.</desc>
-            <circle cx="50" cy="50" r="48" stroke="green" stroke-width="4" fill="lightblue"/>
-            <path d="M30 70 Q40 20, 50 70 T70 70" fill="green"/>
-            <circle cx="50" cy="40" r="10" fill="red"/>
         <h1>Guatemala</h1>
         <p>Land of Eternal Spring</p>
     </header>
@@ -60,7 +54,10 @@
         <!-- Weather Section -->
         <section class="weather">
             <h2>Weather</h2>
-            <div class="weather-icon-mobile">⛅</div>
+-           <div class="weather-icon-mobile"></div>⛅</div>
++           <div class="weather-icon-mobile">
++               <img src="images/weather.svg" alt="Weather icon" width="48" height="48">
++           </div>
             <div class="weather-info">
                 <p><strong>Temperature:</strong> <span id="temperature">20</span>°C</p>
                 <p><strong>Conditions:</strong> Partly Cloudy</p>
