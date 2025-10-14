@@ -1,0 +1,33 @@
+/* place-mobile.css */
+/* Only applies to small screens */
+header {
+    text-align: center;
+    padding: 1rem;
+}
+
+header h1 {
+    font-size: 2rem;
+}
+
+main {
+    display: block;
+    padding: 1rem;
+}
+
+.weather-icon-mobile {
+    display: block;
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+/* Hide large-screen weather icon */
+.weather h2::after {
+    content: none;
+}
+
+/* Make everything stack vertically */
+.weather,
+.attractions {
+    grid-column: auto;
+}

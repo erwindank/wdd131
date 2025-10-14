@@ -1,0 +1,210 @@
+/* CSS Variables - Guatemala flag colors: Blue and White */
+:root {
+    --primary-color: #4997d0;
+    --secondary-color: #ffffff;
+    --accent-color: #0b5384;
+    --text-color: #333333;
+    --background-color: #f5f9fc;
+    --font-family: 'Roboto', sans-serif;
+    --max-width: 1200px;
+    --spacing-small: 0.5rem;
+    --spacing-medium: 1rem;
+    --spacing-large: 2rem;
+}
+
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family);
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+}
+
+/* Header - Mobile First */
+header {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    text-align: center;
+    padding: var(--spacing-large);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+
+    padding: calc(var(--spacing-large) + 0.5rem);
+
+    /* centered, smaller "faded" box using a semi-transparent background layer */
+    background-image: linear-gradient(rgba(255, 255, 255, 0.861), rgba(255, 255, 255, 0.637));
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: min(900px, 85%) calc(100% - 2rem);
+
+    /* subtle inner border and depth */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+
+    /* soft blur for supported browsers */
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+    color: #0d3b8f;
+}
+
+header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: var(--spacing-small);
+}
+
+header p {
+    font-size: 1.1rem;
+    font-weight: 400;
+}
+
+/* Main Content */
+main {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: var(--spacing-medium);
+}
+
+/* Hero Section */
+.hero {
+    margin-bottom: var(--spacing-large);
+}
+
+.hero picture {
+    display: block;
+    width: 100%;
+}
+
+.hero img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Common Section Styles */
+section {
+    background-color: var(--secondary-color);
+    margin-bottom: var(--spacing-large);
+    padding: var(--spacing-large);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+section h2 {
+    color: var(--accent-color);
+    margin-bottom: var(--spacing-medium);
+    font-size: 1.5rem;
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: var(--spacing-small);
+}
+
+/* About Section */
+.about p {
+    margin-bottom: var(--spacing-medium);
+}
+
+/* Weather Section - Mobile View */
+.weather-icon-mobile {
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: var(--spacing-medium);
+}
+
+.weather-info p {
+    margin-bottom: var(--spacing-small);
+}
+
+.weather-info strong {
+    color: var(--accent-color);
+}
+
+/* Attractions Section */
+.attractions ul {
+    list-style-position: inside;
+    padding-left: var(--spacing-medium);
+}
+
+.attractions li {
+    margin-bottom: var(--spacing-small);
+    padding-left: var(--spacing-small);
+}
+
+/* Footer */
+footer {
+    background-color: var(--accent-color);
+    color: var(--secondary-color);
+    text-align: center;
+    padding: var(--spacing-large);
+    margin-top: var(--spacing-large);
+}
+
+footer p {
+    margin-bottom: var(--spacing-small);
+}
+
+/* Media Query for Larger Screens */
+@media screen and (min-width: 768px) {
+
+    /* Header adjustments */
+    header h1 {
+        font-size: 2.5rem;
+    }
+
+    /* Main grid layout */
+    main {
+        padding: var(--spacing-large);
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--spacing-large); /* replaced grid-gap */
+    }
+
+    /* Hero spans full width */
+    .hero {
+        grid-column: 1 / -1;
+    }
+
+    /* About section spans full width */
+    .about {
+        grid-column: 1 / -1;
+    }
+
+    /* Weather section - add pseudo-element for icon */
+    .weather h2::after {
+        content: ' ⛅';
+        font-size: 1.5rem;
+        vertical-align: middle;
+    }
+
+    /* Hide mobile weather icon in larger view */
+    .weather-icon-mobile {
+        display: none;
+    }
+
+    /* Weather and Attractions side by side */
+    .weather {
+        grid-column: 1;
+    }
+
+    .attractions {
+        grid-column: 2;
+    }
+}
+
+/* Even larger screens */
+@media screen and (min-width: 1024px) {
+    header h1 {
+        font-size: 3rem;
+    }
+
+    section h2 {
+        font-size: 1.8rem;
+    }
+}

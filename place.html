@@ -2,19 +2,71 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WDD 131 - Madagascar</title>
-    <meta name="description" content="Media query learning activity example page.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>WDD 131 - Guatemala</title>
+    <meta name="description" content="Media query learning activity example page to explore Guatemala - Land of Eternal Spring with beautiful landscapes and rich culture.">
     <meta name="author" content="Erwin Solorzano">
     <!-- Google Fonts: Roboto -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <!-- CSS Files -->
-    <link rel="stylesheet" href="styles/media-query.css">
-    <link rel="stylesheet" href="styles/media-query-large.css">
+    <link rel="stylesheet" href="styles/place.css">
+    <link rel="stylesheet" href="styles/place-mobile.css" media="(max-width: 600px)">
+    <script src="scripts/place.js" defer></script>
 </head>
-<body>
     
+<body>
+    <header>
+        <h1>Guatemala</h1>
+        <p>Land of Eternal Spring</p>
+    </header>
+    <main>
+        <section class="hero">
+            <picture>
+                <source srcset="images/guatemala-hero-large.webp" media="(min-width: 1000px)">
+                <source srcset="images/guatemala-hero-medium.webp" media="(min-width: 500px)">
+                <img src="images/guatemala-hero-small.webp" alt="Beautiful landscape of Guatemala showing volcanic mountains" width="500" height="250">
+            </picture>
+        </section>
+
+        <!-- About Section -->
+        <section class="about">
+            <h2>About Guatemala</h2>
+            <p>Guatemala is a Central American country known for its dramatic landscape of volcanic mountains, lush rainforests, and ancient Mayan ruins. The country is often called the "Land of Eternal Spring" due to its pleasant climate year-round.</p>
+            <p>From the colonial charm of Antigua to the mystical Lake Atitlán surrounded by volcanoes, Guatemala offers breathtaking natural beauty and rich cultural heritage.</p>
+        </section>
+
+        <!-- Data Section -->
+        <section class="data">
+            <h2>Data</h2>
+            <ul>
+                <li><strong>Area:</strong> 108,889 km²</li>
+                <li><strong>Population:</strong> 17 million</li>
+                <li><strong>Capital:</strong> Guatemala City</li>
+                <li><strong>Languages:</strong> Spanish (official), 22 Mayan languages</li>
+                <li><strong>Currency:</strong> Quetzal (GTQ)</li>
+                <li><strong>Time Zone:</strong> GMT-6</li>
+                <li><strong>Calling Code:</strong> +502</li>
+                <li><strong>Internet TLD:</strong> .gt</li>
+            </ul>
+        </section>
+
+        <!-- Weather Section -->
+        <section class="weather">
+            <h2>Weather</h2>
+            <div class="weather-icon-mobile">⛅</div>
+            <div class="weather-info">
+                <p><strong>Temperature:</strong> <span id="temperature">20</span>°C</p>
+                <p><strong>Conditions:</strong> Partly Cloudy</p>
+                <p><strong>Wind Speed:</strong> <span id="wind-speed">5</span> km/h</p>
+                <p><strong>Wind Chill:</strong> <span id="windchill"></span></p>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; <span id="currentyear"></span> Guatemala Tourism | Erwin Solorzano</p>
+        <p id="lastModified"></p>
+    </footer>
 </body>
 </html>
