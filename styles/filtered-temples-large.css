@@ -1,0 +1,55 @@
+@media screen and (min-width: 768px) {
+
+    .temples-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+        padding: 0 2rem;
+    }
+
+    figure img {
+        max-width: 100%;
+    }
+
+    nav ul {
+        justify-content: center;
+        gap: 2rem;
+    }
+
+    
+@media (max-width: 768px) {
+    header {
+        flex-wrap: wrap; /* allow items to move down */
+    }
+
+    #menu-toggle {
+        display: block;   /* show button */
+    }
+
+    nav ul {
+        display: none;    /* hidden by default */
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+        background-color: #e0f0ff;
+        margin-top: 1rem;
+        padding: 1rem 0;
+    }
+
+    nav ul.show {
+        display: flex;   /* visible when toggled */
+    }
+}
+
+/* Always show nav on larger screens */
+@media (min-width: 768px) {
+    #nav-menu {
+        display: block !important;
+    }
+
+    #menu-toggle {
+        display: none;
+        /* Hide hamburger */
+    }
+}
+}
