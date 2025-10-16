@@ -161,3 +161,13 @@ figure:hover {
 figure:hover figcaption {
     color: #0077cc;
 }
+
+.temple-image {
+    display: block;
+    width: 100%;        /* image fills its container but won't exceed intrinsic width if srcset provided */
+    height: auto;
+    object-fit: cover;  /* crop cleanly if container ratio differs */
+    border-radius: var(--radius);
+    image-rendering: auto; /* keep browser default quality; use crisp-edges only for pixel art */
+    max-width: 100%;
+}
