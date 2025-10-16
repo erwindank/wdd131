@@ -1,58 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WDD 131 - Dynamic Web Fundamentals - Erwin Solorzano</title>
-    <!-- Meta description -->
-    <meta name="description"
-        content="WDD 131 - Dynamic Web Fundamentals, Erwin Solorzano, HTML, CSS, JavaScript, responsive design, Flexbox, Grid">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Lazy Loading Images — WDD131</title>
+    <meta name="description" content="Lazy loading images by deferring offscreen image loading exercise.">
     <meta name="author" content="Erwin Solorzano">
-    <link rel="stylesheet" href="styles/base.css">
-    <!-- Google Fonts preconnect links -->
+
+    <link rel="stylesheet" href="styles/lazyload.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 
-    <!-- Example Google Font (Roboto + Open Sans) -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans&display=swap"
-        rel="stylesheet">
-    <script defer src="scripts/getdates.js"></script>
+    <script defer src="scripts/lazyload.js"></script>
 </head>
+
 <body>
     <main>
         <h1>Lazy Loading Images</h1>
-        <p>Scroll down to see images load as they come into view.</p>
-        <img class="lazy" data-src="images/gu" alt="Image 1" width="600" height="400">
-        <img class="lazy" data-src="images/coban_guatemala_temple.jpg" alt="Image 2" width="600" height="400">
-        <img class="lazy" data-src="images/coban_guatemala_temple.jpg" alt="Image 3" width="600" height="400">
-        <img class="lazy" data-src="images/coban_guatemala_temple.jpg" alt="Image 4" width="600" height="400">
-        <img class="lazy" data-src="images/coban_guatemala_temple.jpg" alt="Image 5" width="600" height="400">
-        <img class="lazy" data-src="images/coban_guatemala_temple.jpg" alt="Image 6" width="600" height="400">
+        <p>Scroll down slowly and watch the Network tab — images load only when they come into view.</p>
 
-        <script>
-            document.addEventListener("DOMContentLoaded", function() {
-                const lazyImages = document.querySelectorAll('img.lazy');
-
-                const imageObserver = new IntersectionObserver((entries, observer) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            const img = entry.target;
-                            img.src = img.dataset.src;
-                            img.classList.remove('lazy');
-                            observer.unobserve(img);
-                        }
-                    });
-                });
-
-                lazyImages.forEach(img => {
-                    imageObserver.observe(img);
-                });
-            });
-        </script>
+        <!-- Six portrait images, native lazy loading via loading="lazy" -->
+        <img class="lazy" loading="lazy" src="https://picsum.photos/400/650?random=1" alt="Placeholder 1" width="400"
+            height="600">
+        <img class="lazy" loading="lazy" src="https://picsum.photos/400/650?random=2" alt="Placeholder 2" width="400"
+            height="600">
+        <img class="lazy" loading="lazy" src="https://picsum.photos/400/650?random=3" alt="Placeholder 3" width="400"
+            height="600">
+        <img class="lazy" loading="lazy" src="https://picsum.photos/400/650?random=4" alt="Placeholder 4" width="400"
+            height="600">
+        <img class="lazy" loading="lazy" src="https://picsum.photos/400/650?random=5" alt="Placeholder 5" width="400"
+            height="600">
+        <img class="lazy" loading="lazy" src="https://picsum.photos/400/650?random=6" alt="Placeholder 6" width="400"
+            height="600">
     </main>
+
+    <footer>
+        <p>&copy; <span id="currentyear"></span> | Erwin Solorzano | WDD 131</p>
+        <p>Last modified: <span id="lastModified"></span></p>
+    </footer>
 </body>
-<footer>
-    <p>&copy; <span id="currentyear"></span> | Erwin Solorzano | WDD 131</p>
-    <p id="lastModified"></p>
-</footer>
+
 </html>

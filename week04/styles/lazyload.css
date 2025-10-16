@@ -1,0 +1,95 @@
+/* Basic layout */
+:root {
+    --bg: #ffffff;
+    --text: #222;
+    --max-width: 720px;
+    --img-width: 400px;
+    --img-height: 650px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0
+}
+
+body {
+    font-family: "Roboto", Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    padding: 2rem 1rem;
+    display: flex;
+    flex-direction: column;
+    /* stack main and footer vertically */
+    align-items: center;
+    /* center content horizontally */
+    justify-content: flex-start;
+    min-height: 100vh;
+    /* keep footer at bottom when content is short */
+}
+
+main {
+    width: 100%;
+    max-width: var(--max-width);
+    text-align: center;
+}
+
+/* Title/lead */
+main h1 {
+    font-size: 1.6rem;
+    margin-bottom: .5rem
+}
+
+main p {
+    margin-bottom: 1.25rem;
+    color: #444
+}
+
+/* Images stacked vertically, centered */
+main img {
+    display: block;
+    /* ensures one-column */
+    margin: 1rem auto;
+    /* center horizontally */
+    width: var(--img-width);
+    /* required 400px width */
+    height: var(--img-height);
+    /* required 600px+ height */
+    object-fit: cover;
+    /* maintain portrait crop */
+    background: #000;
+    /* black background for fade-from-black effect */
+    border-radius: 6px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    opacity: 0;
+    /* start invisible until loaded */
+    transform: translateY(6px);
+}
+
+/* Animation: fade from black to visible */
+@keyframes fadeFromBlack {
+    0% {
+        opacity: 0;
+        filter: brightness(0);
+        transform: translateY(12px);
+    }
+
+    100% {
+        opacity: 1;
+        filter: brightness(1);
+        transform: translateY(0);
+    }
+}
+
+/* Applied when image load completes */
+main img.is-loaded {
+    animation: fadeFromBlack 700ms ease forwards;
+}
+
+/* Footer */
+footer {
+    margin-top: 2rem;
+    text-align: center;
+    color: #444;
+    font-size: .95rem;
+}
