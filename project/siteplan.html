@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Site Plan – My 2025 Music Listening Charts</title>
+  <link rel="stylesheet" href="siteplan.css" />
+  <!-- Google Fonts: Poppins (body) + Playfair Display (headings) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --font-sans: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+      --font-heading: "Playfair Display", Georgia, serif;
+    }
+    body{
+      font-family: var(--font-sans);
+      background-color: #0d1117;
+      color: #e6edf3;
+      line-height: 1.6;
+      padding: 20px;
+    }
+    h1, h2{
+      font-family: var(--font-heading);
+      color: #58a6ff;
+    }
+    .color-sample {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      margin: 0 10px;
+      border-radius: 5px;
+      border: 1px solid #30363d;
+    }
+    .dark { background-color: #0d1117; }
+    .accent { background-color: #58a6ff; }
+    .text { background-color: #e6edf3; border: 1px solid #0d1117; }
+    img {
+      max-width: 100%;
+      border-radius: 10px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Site Plan: My 2025 Music Listening Charts</h1>
+  </header>
+
+  <section>
+    <h2>Site Name</h2>
+    <p><strong>Name:</strong> My 2025 Music Listening Charts</p>
+    <p>
+      This name reflects the purpose of the website—to track and visualize my personal music listening data throughout 2025. It serves as a living record of my top songs, artists, and albums across the year.
+    </p>
+    <p><em>Optional domain:</em> my2025charts.netlify.app</p>
+  </section>
+
+  <section>
+    <h2>Site Purpose</h2>
+    <p>
+      The site’s purpose is to showcase my 2025 listening data through interactive charts, rankings, and statistics. Users can view dynamic “Top 10,” “Top 20,” and “Top 100” lists that update automatically as I input new listening records. The site will use JavaScript to read data from JSON files or localStorage, allowing me to add new entries directly on the site.  
+    </p>
+  </section>
+
+  <section>
+    <h2>Scenarios</h2>
+    <ul>
+      <li>How can I see which songs I listened to most in 2025?</li>
+      <li>What are my top 10 albums or artists for the current month?</li>
+      <li>Can I manually add a song with its listening date and time?</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Color Schema</h2>
+    <p>
+      The website will use a <strong>dark mode</strong> theme to match modern music platforms.  
+    </p>
+    <ul>
+      <li><strong>Background:</strong> #0d1117 (dark charcoal gray)</li>
+      <li><strong>Accent Color:</strong> #58a6ff (vibrant blue for highlights and links)</li>
+      <li><strong>Text Color:</strong> #e6edf3 (light grayish white for readability)</li>
+    </ul>
+    <div>
+      <span class="color-sample dark"></span>
+      <span class="color-sample accent"></span>
+      <span class="color-sample text"></span>
+    </div>
+  </section>
+
+  <section>
+    <h2>Typography</h2>
+    <p>
+      The site will use clean, modern sans-serif fonts for readability and a digital aesthetic:
+    </p>
+    <ul>
+      <li><strong>Headings:</strong> Inter, sans-serif – for clarity and modern appeal.</li>
+      <li><strong>Body text:</strong> Inter or system default (Arial, Helvetica, sans-serif).</li>
+      <li><strong>Accents / Data displays:</strong> Monospace (for timestamps or counts).</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Wireframe</h2>
+    <h3>Mobile Layout</h3>
+    <p>
+      The mobile view will feature a simple scroll layout: header → year stats → add form button → footer.
+    </p>
+    <img src="images/mobile-music-charts-wireframe.drawio.png" alt="Mobile wireframe sketch" />
+
+    <h3>Desktop Layout</h3>
+    <p>
+      The desktop layout will include a sidebar navigation, a larger chart section, and a stats summary grid.
+    </p>
+    <img src="images/music-charts-home-page-wireframe.drawio.png" alt="Desktop homepage wireframe showing left sidebar navigation with links Home Charts Artists Albums Add Entry; top header with site title My 2025 Music Listening Charts and a search box; main content containing a Top 10 chart area, time range filters, and a stats summary grid; footer. Wireframe is grayscale with labeled boxes. Emotional tone is focused and functional." />
+
+  </section>
+
+  <footer>
+    <p>© 2025 My 2025 Music Listening Charts | Site Plan by Erwin Solorzano</p>
+  </footer>
+</body>
+</html>
