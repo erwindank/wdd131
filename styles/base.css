@@ -16,14 +16,15 @@ body {
 header {
   width: 100%;
   box-sizing: border-box;
-  background-color: #003366;
-  /* dark blue */
-  color: #ffffff;
+  background-color: #003366; /* dark blue */
+  color: #ffffff;            /* force white text for contrast */
   text-align: center;
   grid-column: 1 / 4;
 }
 
+/* Course title in header should inherit the white color */
 #course-title {
+  color: #ffffff;
   font-size: 1.5rem;
   font-weight: bold;
   padding: 1rem;
@@ -41,8 +42,10 @@ nav ul {
   padding: 0.5rem 0;
   background-color: #000000;
   border-bottom: 2px solid #003366;
+  color: #ffffff; /* ensure non-link text inside ul is white */
 }
 
+/* Keep links white and reachable */
 nav a {
   color: #ffffff;
   text-decoration: none;
