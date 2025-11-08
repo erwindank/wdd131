@@ -161,6 +161,52 @@ figure:hover figcaption {
     color: #0077cc;
 }
 
+/* Consolidated figure rules (single definition) scoped to the temples grid */
+.temples-grid figure {
+    text-align: center;
+    background-color: var(--card-bg);
+    padding: 1rem;
+    border-radius: var(--radius);
+    box-shadow: 0 2px 4px var(--shadow-light);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin: 0 auto;
+    width: 100%;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+/* Consolidated single image rule (no duplicate definitions) scoped) */
+.temples-grid figure img {
+    display: block;
+    width: 100%;
+    height: var(--img-height, 400px); /* single source of truth with fallback */
+    max-width: var(--img-max-width);
+    margin: 0 auto;
+    border-radius: 0;
+    box-shadow: 0 4px 8px var(--shadow-medium);
+    object-fit: cover;
+}
+
+/* Consolidated single figcaption rule (no duplicate definitions) scoped */
+.temples-grid figcaption {
+    margin-top: 0.5rem;
+    font-weight: bold;
+    color: var(--primary, #6c6501); /* single source of truth with fallback */
+    font-family: var(--font-serif);
+    font-size: 1.3rem;
+    transition: color 0.3s ease;
+}
+
+/* Hover state (scoped) */
+.temples-grid figure:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px var(--shadow-strong);
+}
+
+.temples-grid figure:hover figcaption {
+    color: #0077cc;
+}
+
 /* Footer */
 footer {
     text-align: center;
