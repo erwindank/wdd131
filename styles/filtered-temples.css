@@ -13,12 +13,52 @@
     --accent: #afa11e;
     --text: #333333;
     --muted: #555555;
+    --white: #ffffff;
     --radius: 8px;
     --img-max-width: 300px;
     --img-height: 400px;
     --shadow-light: rgba(202, 195, 131, 0.1);
     --shadow-medium: rgba(0, 0, 0, 0.1);
-    --shadow-strong: rgba(0, 0, 0, 0.2);
+    --link-color: #003366; /* darker link color for good contrast on light backgrounds */
+}
+
+/* Header — ensure high-contrast light text on the primary background */
+header {
+    background-color: var(--primary);
+    color: var(--white);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Force header descendants to use light text unless explicitly overridden */
+header,
+header * {
+    color: var(--white);
+}
+
+/* Links on light surfaces: use darker --link-color for contrast */
+a {
+    color: var(--link-color);
+    text-decoration: none;
+}
+
+/* Links inside header/nav should remain light for the dark header background */
+header a,
+nav a {
+    color: var(--white);
+}
+
+/* Optionally: hover states that keep contrast */
+a:hover,
+a:focus {
+    color: var(--accent);
+    outline: none;
+}
+
+/* Ensure keyboard users see a clear focus state on links */
+a:focus {
+    outline: 3px solid var(--accent);
+    outline-offset: 3px;
 }
 
 body {
@@ -29,22 +69,9 @@ body {
     padding: 1rem;
 }
 
-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    text-align: center;
-    margin-bottom: 2rem;
-    background-color: var(--primary);
-    padding: 1rem;
-    border-radius: var(--radius);
-    box-shadow: 0 2px 4px var(--shadow-light);
-    font-family: var(--font-serif);
-}
-
 header h1 {
     font-size: 2rem;
-    color: #ffffff;
+    color: var(--white);
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
     font-weight: bold;
     margin-left: 1rem;
@@ -66,11 +93,10 @@ header h1 {
     border: none;
     font-size: 2rem;
     cursor: pointer;
-    color: #ffffff;
+    color: var(--white);
     margin-right: 0.5rem;
-    font-family: 'Georgia', serif;
+    font-family: var(--font-serif);
     font-weight: bold;
-    padding: 0;
 }
 
 nav ul {
@@ -85,7 +111,7 @@ nav ul {
 
 nav a {
     text-decoration: none;
-    color: #ffffff;
+    color: var(--white);
     font-weight: bold;
     transition: color 0.3s ease;
 }
@@ -113,29 +139,29 @@ main {
 }
 
 figure {
-    text-align: center;
-    background-color: var(--card-bg);
-    padding: 1rem;
+    margin: 0 0 1.5rem;
     border-radius: var(--radius);
-    box-shadow: 0 2px 4px var(--shadow-light);
-    transition: box-shadow 0.3s ease, transform 0.3s ease;
-    margin: 0 auto;
-    width: 100%;
+    overflow: hidden;
+    background: var(--card-bg);
+    box-shadow: 0 6px 18px var(--shadow-medium);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
 }
 
 figure img {
+    display: block;
     width: 100%;
-    height: var(--img-height);
-    max-width: var(--img-max-width);
-    margin: 0 auto;
-    border-radius: var(--radius);
-    box-shadow: 0 4px 8px var(--shadow-medium);
+    height: auto;
+    object-fit: cover;
+    border-radius: 0;
+    box-shadow: none;
 }
 
 figcaption {
     margin-top: 0.5rem;
     font-weight: bold;
-    color: var(--primary);
+    /* use the page text color for better contrast on white cards */
+    color: var(--text);
     font-family: var(--font-serif);
     font-size: 1.3rem;
     transition: color 0.3s ease;
@@ -148,26 +174,21 @@ footer {
     color: var(--muted);
 }
 
-figure {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    cursor: pointer;
-}
-
 figure:hover {
     transform: scale(1.05);
     box-shadow: 0 10px 20px var(--shadow-strong);
 }
 
 figure:hover figcaption {
-    color: #0077cc;
+    color: var(--accent);
 }
 
 .temple-image {
     display: block;
-    width: 100%;        /* image fills its container but won't exceed intrinsic width if srcset provided */
+    width: 100%;
     height: auto;
-    object-fit: cover;  /* crop cleanly if container ratio differs */
+    object-fit: cover;
     border-radius: var(--radius);
-    image-rendering: auto; /* keep browser default quality; use crisp-edges only for pixel art */
+    image-rendering: auto;
     max-width: 100%;
 }

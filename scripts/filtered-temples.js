@@ -35,14 +35,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Create image (ensure an absolute URL)
         const img = document.createElement('img');
-        const imagePath = t.imageUrl || t.image || '';
-        img.src = new URL(imagePath, location.href).href; // makes relative paths absolute
+        const base = new URL(t.imageUrl || t.image || '', location.href).href;
+
+        // Prefer WebP if you have it — fallback to base
+        // Example: assume naming pattern supports 400/800 variants; otherwise supply real URLs
+        const small = base; // 400w
+        const large = base.replace('/400x250/', '/800x500/'); // adjust to your host if possible
+
+        img.src = large; // safe fallback to a good-quality source
+        img.srcset = `${small} 400w, ${large} 800w`;
+        img.sizes = "(max-width: 600px) 100vw, (min-width: 768px) 33vw, 50vw";
         img.alt = displayName;
-        img.setAttribute('loading', 'lazy');
-        // provide dimensions to avoid layout shift (use provided or fallbacks)
-        img.width = t.width || 400;
-        img.height = t.height || t.heightPx || 650;
+        img.loading = 'lazy';
         img.className = 'temple-image';
+        // Optionally set intrinsic width/height to reduce CLS:
+        img.width = 800; 
+        img.height = 500;
 
         // Name
         const name = document.createElement('h3');
@@ -193,10 +201,22 @@ function renderGrid(list) {
         fig.className = 'temple-card';
 
         const img = document.createElement('img');
-        img.src = imgSrc;
+        const base = new URL(t.imageUrl || t.image || '', location.href).href;
+
+        // Prefer WebP if you have it — fallback to base
+        // Example: assume naming pattern supports 400/800 variants; otherwise supply real URLs
+        const small = base; // 400w
+        const large = base.replace('/400x250/', '/800x500/'); // adjust to your host if possible
+
+        img.src = large; // safe fallback to a good-quality source
+        img.srcset = `${small} 400w, ${large} 800w`;
+        img.sizes = "(max-width: 600px) 100vw, (min-width: 768px) 33vw, 50vw";
         img.alt = displayName;
         img.loading = 'lazy';
         img.className = 'temple-image';
+        // Optionally set intrinsic width/height to reduce CLS:
+        img.width = 800; 
+        img.height = 500;
 
         const cap = document.createElement('figcaption');
 
