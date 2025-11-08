@@ -161,3 +161,28 @@ figure:hover {
 figure:hover figcaption {
     color: #0077cc;
 }
+
+:root{
+  --font-sans: Arial, sans-serif;
+  --font-serif: 'Georgia', serif;
+  --page-bg: #f9f9f9;
+  --card-bg: #ffffff;
+  --primary: #6c6501;
+  --accent: #afa11e;
+  --text: #333333;
+  --muted: #555555;
+  --radius: 8px;
+  --img-max-width: 300px;
+  --img-height: 400px;
+  --shadow-light: rgba(202,195,131,0.1);
+  --shadow-medium: rgba(0,0,0,0.1);
+}
+
+/* use fallback values where variables are consumed */
+figcaption {
+  color: var(--primary, #6c6501);
+}
+figure img {
+  height: var(--img-height, 400px);
+}
+a { color: var(--link-color, #003366); }
