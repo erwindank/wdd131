@@ -176,12 +176,6 @@ a:focus {
 }
 
 /* Fallbacks / defensive usage of variables */
-figcaption {
-    color: var(--primary, #6c6501);
-}
-figure img {
-    height: var(--img-height, 400px);
-}
 a {
     color: var(--link-color, #003366);
 }
