@@ -1,3 +1,4 @@
+/* Reset and variables (single :root) */
 * {
     margin: 0;
     padding: 0;
@@ -19,8 +20,10 @@
     --shadow-light: rgba(202, 195, 131, 0.1);
     --shadow-medium: rgba(0, 0, 0, 0.1);
     --shadow-strong: rgba(0, 0, 0, 0.2);
+    --link-color: #003366;
 }
 
+/* Base layout */
 body {
     font-family: var(--font-sans);
     line-height: 1.5;
@@ -29,6 +32,7 @@ body {
     padding: 1rem;
 }
 
+/* Header */
 header {
     display: flex;
     align-items: center;
@@ -40,6 +44,7 @@ header {
     border-radius: var(--radius);
     box-shadow: 0 2px 4px var(--shadow-light);
     font-family: var(--font-serif);
+    color: #ffffff;
 }
 
 header h1 {
@@ -50,17 +55,15 @@ header h1 {
     margin-left: 1rem;
 }
 
-/* Hide nav menu by default on mobile */
+/* Navigation */
 #nav-menu {
     display: none;
 }
 
-/* Show it when .show class is toggled */
 #nav-menu.show {
     display: block;
 }
 
-/* Style hamburger button */
 #menu-toggle {
     background: none;
     border: none;
@@ -68,7 +71,7 @@ header h1 {
     cursor: pointer;
     color: #ffffff;
     margin-right: 0.5rem;
-    font-family: 'Georgia', serif;
+    font-family: var(--font-serif);
     font-weight: bold;
     padding: 0;
 }
@@ -93,9 +96,9 @@ nav a {
 nav a:hover {
     color: var(--accent);
     text-decoration: underline;
-
 }
 
+/* Main title */
 main h2 {
     text-align: center;
     margin-bottom: 1.5rem;
@@ -105,33 +108,40 @@ main h2 {
     text-shadow: 1px 1px 2px var(--shadow-medium);
 }
 
-/* Figures stack vertically on mobile */
+/* Figures stack on mobile */
 main {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
 }
 
+/* Consolidated figure rules (single definition) */
 figure {
     text-align: center;
     background-color: var(--card-bg);
     padding: 1rem;
     border-radius: var(--radius);
     box-shadow: 0 2px 4px var(--shadow-light);
-    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* consolidated once */
     margin: 0 auto;
     width: 100%;
+    cursor: pointer;
+    overflow: hidden;
 }
 
+/* Single image rule */
 figure img {
+    display: block;
     width: 100%;
     height: var(--img-height);
     max-width: var(--img-max-width);
     margin: 0 auto;
-    border-radius: var(--radius);
+    border-radius: 0; /* avoid double rounding; figure provides rounding */
     box-shadow: 0 4px 8px var(--shadow-medium);
+    object-fit: cover;
 }
 
+/* Figcaption consolidated */
 figcaption {
     margin-top: 0.5rem;
     font-weight: bold;
@@ -141,18 +151,7 @@ figcaption {
     transition: color 0.3s ease;
 }
 
-footer {
-    text-align: center;
-    margin-top: 2rem;
-    font-size: 0.9rem;
-    color: var(--muted);
-}
-
-figure {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    cursor: pointer;
-}
-
+/* Hover state */
 figure:hover {
     transform: scale(1.05);
     box-shadow: 0 10px 20px var(--shadow-strong);
@@ -162,27 +161,27 @@ figure:hover figcaption {
     color: #0077cc;
 }
 
-:root{
-  --font-sans: Arial, sans-serif;
-  --font-serif: 'Georgia', serif;
-  --page-bg: #f9f9f9;
-  --card-bg: #ffffff;
-  --primary: #6c6501;
-  --accent: #afa11e;
-  --text: #333333;        /* fallback used by var(...) below */
-  --muted: #555555;
-  --radius: 8px;
-  --img-max-width: 300px;
-  --img-height: 400px;
-  --shadow-light: rgba(202,195,131,0.1);
-  --shadow-medium: rgba(0,0,0,0.1);
+/* Footer */
+footer {
+    text-align: center;
+    margin-top: 2rem;
+    font-size: 0.9rem;
+    color: var(--muted);
 }
 
-/* use fallback values where variables are consumed */
+/* Accessibility: focus styles */
+a:focus {
+    outline: 3px solid var(--accent);
+    outline-offset: 3px;
+}
+
+/* Fallbacks / defensive usage of variables */
 figcaption {
-  color: var(--primary, #6c6501);
+    color: var(--primary, #6c6501);
 }
 figure img {
-  height: var(--img-height, 400px);
+    height: var(--img-height, 400px);
 }
-a { color: var(--link-color, #003366); }
+a {
+    color: var(--link-color, #003366);
+}
