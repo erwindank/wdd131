@@ -86,33 +86,25 @@ nav ul {
     font-size: larger;
 }
 
+/* Default links (for light surfaces) — ensure good contrast */
 nav a {
     text-decoration: none;
-    color: #ffffff;
+    color: var(--link-color, #003366); /* darker color for contrast on light bg */
     font-weight: bold;
     transition: color 0.3s ease;
 }
 
+/* Keep links white when inside the dark header */
+header a,
+header nav a,
+#menu-toggle {
+    color: #ffffff;
+}
+
+/* Hover state (unchanged) */
 nav a:hover {
     color: var(--accent);
     text-decoration: underline;
-}
-
-/* Main title */
-main h2 {
-    text-align: center;
-    margin-bottom: 1.5rem;
-    font-family: var(--font-serif);
-    color: var(--primary);
-    font-size: 2rem;
-    text-shadow: 1px 1px 2px var(--shadow-medium);
-}
-
-/* Figures stack on mobile */
-main {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
 }
 
 /* Consolidated figure rules (single definition) */
