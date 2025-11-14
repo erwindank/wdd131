@@ -34,7 +34,7 @@ body {
 /* Header - Mobile First */
 header {
     background-color: var(--primary-color);
-    color: var(--secondary-color); /* use white for good contrast on the blue background */
+    color: var(--secondary-color, #ffffff); /* single color declaration with fallback */
     text-align: center;
     padding: calc(var(--spacing-large) + 0.2rem);
 
