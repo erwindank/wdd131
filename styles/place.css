@@ -29,14 +29,9 @@ body {
 /* Header - Mobile First */
 header {
     background-color: var(--primary-color);
-    color: var(--secondary-color);
+    color: var(--secondary-color); /* use white for good contrast on the blue background */
     text-align: center;
-    padding: var(--spacing-large);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    position: relative;
-    overflow: hidden;
-
-    padding: calc(var(--spacing-large) + 0.2rem);
+    padding: calc(var(--spacing-large) + 0.2rem); /* single padding declaration */
 
     /* centered, smaller "faded" box using a semi-transparent background layer */
     background-image: linear-gradient(rgba(255, 255, 255, 0.861), rgba(255, 255, 255, 0.637));
@@ -44,9 +39,11 @@ header {
     background-position: center;
     background-size: min(900px, 85%) calc(100% - 2rem);
 
-
-    /* subtle inner border and depth */
+    /* subtle inner border and depth + outer shadow (single box-shadow declaration) */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+
+    position: relative;
+    overflow: hidden;
 
     /* soft blur for supported browsers */
     -webkit-backdrop-filter: blur(4px);
