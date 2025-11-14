@@ -1,33 +1,42 @@
 /* place-mobile.css */
 /* Only applies to small screens */
-header {
-    text-align: center;
-    padding: 1rem;
-}
+@media (max-width: 600px) {
 
-header h1 {
-    font-size: 2rem;
-}
+    header {
+        text-align: center;
+        padding: 1rem;
+    }
 
-main {
-    display: block;
-    padding: 1rem;
-}
+    header h1 {
+        font-size: 2rem;
+    }
 
-.weather-icon-mobile {
-    display: block;
-    font-size: 3rem;
-    text-align: center;
-    margin-bottom: 1rem;
-}
+    main {
+        display: block;
+        padding: 1rem;
+    }
 
-/* Hide large-screen weather icon */
-.weather h2::after {
-    content: none;
-}
+    .weather-icon-mobile {
+        display: block;
+        font-size: 3rem;
+        text-align: center;
+        margin-bottom: 1rem;
+    }
 
-/* Make everything stack vertically */
-.weather,
-.attractions {
-    grid-column: auto;
+    .weather-icon-mobile img {
+        width: 48px;
+        height: auto;
+        display: inline-block;
+    }
+
+    /* Hide large-screen pseudo-element icon on small screens */
+    .weather h2::after {
+        content: none;
+    }
+
+    /* Make weather and attractions stack vertically on small screens */
+    .weather,
+    .attractions {
+        grid-column: auto;
+    }
 }
