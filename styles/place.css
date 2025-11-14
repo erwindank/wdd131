@@ -10,6 +10,11 @@
     --spacing-small: 0.5rem;
     --spacing-medium: 1rem;
     --spacing-large: 2rem;
+
+    /* new standardized variables */
+    --shadow-light: 0 2px 4px rgba(0,0,0,0.1);
+    --shadow-medium: 0 4px 8px rgba(0,0,0,0.2);
+    --shadow-strong: 0 6px 18px rgba(0,0,0,0.08);
 }
 
 /* Reset and Base Styles */
@@ -23,7 +28,7 @@ body {
     font-family: var(--font-family);
     line-height: 1.6;
     color: var(--text-color);
-    background-color: var(--bg-color);
+    background-color: var(--background-color); /* fixed var name */
 }
 
 /* Header - Mobile First */
@@ -38,14 +43,14 @@ header {
     background-position: center;
     background-size: min(900px, 85%) calc(100% - 2rem);
 
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+    box-shadow: var(--shadow-light), inset 0 0 0 1px rgba(255, 255, 255, 0.04);
 
     position: relative;
     overflow: hidden;
 
     -webkit-backdrop-filter: blur(4px);
     backdrop-filter: blur(4px);
-    color: #0d3b8f;
+    /* remove the hard-coded override color: #0d3b8f; */
 }
 
 header h1 {
@@ -81,7 +86,7 @@ main {
     height: auto;
     display: block;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: var(--shadow-medium); /* use variable */
 }
 
 /* Common Section Styles */
@@ -90,7 +95,7 @@ section {
     margin-bottom: var(--spacing-large);
     padding: var(--spacing-large);
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-light); /* use variable */
 }
 
 section h2 {
