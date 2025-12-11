@@ -564,6 +564,11 @@ function displayImportSummary(result) {
             <strong style="color: var(--success);">✓ ${result.successful}</strong> entries imported successfully<br>
             ${result.failed > 0 ? `<strong style="color: var(--error);">✗ ${result.failed}</strong> entries failed` : ''}
         </p>
+        
+        <div style="display: flex; gap: 1rem; margin-top: 1rem; flex-wrap: wrap;">
+            <a href="index.html" class="btn" style="display: inline-block;">View Statistics</a>
+            <a href="charts.html" class="btn" style="display: inline-block;">View Charts</a>
+        </div>
     `;
 
     if (result.errors.length > 0) {

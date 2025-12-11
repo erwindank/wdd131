@@ -8,7 +8,7 @@
 // ================================================
 
 const STORAGE_KEY = 'musicListeningData2025';
-const JSON_DATA_PATH = '../data/2025.json';
+const JSON_DATA_PATH = 'data/2025.json';
 
 // ================================================
 // Data Loading and Storage Functions
