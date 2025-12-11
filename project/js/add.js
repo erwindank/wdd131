@@ -312,7 +312,7 @@ function setupFileUpload() {
 async function handleFileUpload() {
     const fileInput = document.getElementById('fileInput');
     const file = fileInput.files[0];
-    
+
     if (!file) {
         showMessage('Please select a file', 'error', document.getElementById('uploadMessageContainer'));
         return;
@@ -373,27 +373,27 @@ async function handleFileUpload() {
 function parseJSONFile(file) {
     return new Promise((resolve, reject) => {
         const reader = new FileReader();
-        
+
         reader.onload = (e) => {
             try {
                 const data = JSON.parse(e.target.result);
-                
+
                 // Ensure it's an array
                 if (!Array.isArray(data)) {
                     reject(new Error('JSON file must contain an array of entries'));
                     return;
                 }
-                
+
                 resolve(data);
             } catch (error) {
                 reject(new Error('Invalid JSON format: ' + error.message));
             }
         };
-        
+
         reader.onerror = () => {
             reject(new Error('Failed to read file'));
         };
-        
+
         reader.readAsText(file);
     });
 }
@@ -406,62 +406,62 @@ function parseJSONFile(file) {
 function parseCSVFile(file) {
     return new Promise((resolve, reject) => {
         const reader = new FileReader();
-        
+
         reader.onload = (e) => {
             try {
                 const text = e.target.result;
                 const lines = text.split('\n').filter(line => line.trim());
-                
+
                 if (lines.length < 2) {
                     reject(new Error('CSV file must have a header row and at least one data row'));
                     return;
                 }
-                
+
                 // Parse header
                 const headers = parseCSVLine(lines[0]);
-                
+
                 // Validate required headers
                 const requiredHeaders = ['song', 'artist', 'plays', 'datetime'];
-                const missingHeaders = requiredHeaders.filter(h => 
+                const missingHeaders = requiredHeaders.filter(h =>
                     !headers.some(header => header.toLowerCase() === h)
                 );
-                
+
                 if (missingHeaders.length > 0) {
                     reject(new Error(`CSV missing required headers: ${missingHeaders.join(', ')}`));
                     return;
                 }
-                
+
                 // Parse data rows
                 const entries = [];
                 for (let i = 1; i < lines.length; i++) {
                     const values = parseCSVLine(lines[i]);
-                    
+
                     if (values.length === 0) continue; // Skip empty lines
-                    
+
                     const entry = {};
                     headers.forEach((header, index) => {
                         const key = header.toLowerCase().trim();
                         entry[key] = values[index] ? values[index].trim() : '';
                     });
-                    
+
                     // Convert plays to number
                     if (entry.plays) {
                         entry.plays = parseInt(entry.plays);
                     }
-                    
+
                     entries.push(entry);
                 }
-                
+
                 resolve(entries);
             } catch (error) {
                 reject(new Error('Invalid CSV format: ' + error.message));
             }
         };
-        
+
         reader.onerror = () => {
             reject(new Error('Failed to read file'));
         };
-        
+
         reader.readAsText(file);
     });
 }
@@ -475,11 +475,11 @@ function parseCSVLine(line) {
     const values = [];
     let currentValue = '';
     let insideQuotes = false;
-    
+
     for (let i = 0; i < line.length; i++) {
         const char = line[i];
         const nextChar = line[i + 1];
-        
+
         if (char === '"') {
             if (insideQuotes && nextChar === '"') {
                 // Escaped quote
@@ -497,10 +497,10 @@ function parseCSVLine(line) {
             currentValue += char;
         }
     }
-    
+
     // Add last value
     values.push(currentValue);
-    
+
     return values;
 }
 
@@ -516,19 +516,19 @@ function importEntries(entries) {
         failed: 0,
         errors: []
     };
-    
+
     const localData = getLocalStorageData();
-    
+
     entries.forEach((entry, index) => {
         // Validate entry
         const validation = validateEntry(entry);
-        
+
         if (validation.valid) {
             // Ensure album field exists
             if (!entry.album || entry.album.trim() === '') {
                 entry.album = 'Unknown Album';
             }
-            
+
             localData.push(entry);
             result.successful++;
         } else {
@@ -540,12 +540,12 @@ function importEntries(entries) {
             });
         }
     });
-    
+
     // Save updated data
     if (result.successful > 0) {
         saveData(localData);
     }
-    
+
     return result;
 }
 
@@ -556,23 +556,23 @@ function importEntries(entries) {
 function displayImportSummary(result) {
     const summarySection = document.getElementById('importSummary');
     const summaryContent = document.getElementById('importSummaryContent');
-    
+
     summarySection.classList.remove('hidden');
-    
+
     let html = `
         <p style="font-size: 1.1rem;">
             <strong style="color: var(--success);">✓ ${result.successful}</strong> entries imported successfully<br>
             ${result.failed > 0 ? `<strong style="color: var(--error);">✗ ${result.failed}</strong> entries failed` : ''}
         </p>
     `;
-    
+
     if (result.errors.length > 0) {
         html += `
             <details style="margin-top: 1rem;">
                 <summary style="cursor: pointer; color: var(--accent);">View Errors (${result.errors.length})</summary>
                 <ul style="margin-top: 0.5rem; padding-left: 1.5rem; color: var(--text-secondary);">
         `;
-        
+
         result.errors.slice(0, 10).forEach(error => {
             html += `
                 <li style="margin-bottom: 0.5rem;">
@@ -581,19 +581,19 @@ function displayImportSummary(result) {
                 </li>
             `;
         });
-        
+
         if (result.errors.length > 10) {
             html += `<li><em>...and ${result.errors.length - 10} more errors</em></li>`;
         }
-        
+
         html += `
                 </ul>
             </details>
         `;
     }
-    
+
     summaryContent.innerHTML = html;
-    
+
     // Show success message
     if (result.successful > 0) {
         showMessage(
