@@ -17,7 +17,15 @@ document.addEventListener('DOMContentLoaded', async () => {
     try {
         // Load data
         chartsData = await loadData();
-        console.log(`Loaded ${chartsData.length} entries for charts`);
+        console.log(`=== CHARTS PAGE DATA LOADED ===`);
+        console.log(`Total entries: ${chartsData.length}`);
+        console.log('Sample entries:', chartsData.slice(0, 3));
+
+        if (chartsData.length === 0) {
+            console.error('No data loaded for charts!');
+            showChartError();
+            return;
+        }
 
         // Set up event listeners for chart buttons
         setupChartControls();
@@ -81,7 +89,11 @@ function renderChart(limit) {
     // Get sorted songs
     const topSongs = sortSongsByPlays(chartsData, limit);
 
+    console.log(`Rendering chart with ${topSongs.length} songs (limit: ${limit})`);
+    console.log('Top 3 songs:', topSongs.slice(0, 3));
+
     if (topSongs.length === 0) {
+        console.error('sortSongsByPlays returned 0 songs!');
         displayElement.innerHTML = `
             <div class="message">
                 <p>No songs to display yet. <a href="add.html">Add some entries</a> to see your charts!</p>
