@@ -105,7 +105,13 @@
             try {
                 // Load data
                 const data = await loadData();
-                console.log(`Loaded ${data.length} total entries`);
+                console.log(`=== INDEX PAGE DATA LOADED ===`);
+                console.log(`Total entries: ${data.length}`);
+                console.log('Sample entries:', data.slice(0, 3));
+
+                if (data.length === 0) {
+                    console.warn('No data loaded! Check if JSON file exists and localStorage has data.');
+                }
 
                 // Display statistics
                 displayStats(data);

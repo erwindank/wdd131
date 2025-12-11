@@ -9,37 +9,138 @@
 
 const STORAGE_KEY = 'musicListeningData2025';
 const JSON_DATA_PATH = 'data/2025.json';
+const CSV_DATA_PATH = 'data/scrobbles-erwindank-1765486344.csv';
 
 // ================================================
 // Data Loading and Storage Functions
 // ================================================
 
 /**
- * Load data from both JSON file and localStorage
- * Merges both sources into a single dataset
+ * Load data from JSON/CSV files and localStorage
+ * Merges all sources into a single dataset
  * @returns {Promise<Array>} Combined array of listening data
  */
 async function loadData() {
+    let fileData = [];
+
     try {
-        // Load JSON data from file
-        const response = await fetch(JSON_DATA_PATH);
-        const jsonData = await response.json();
+        // Try loading JSON file first
+        try {
+            const jsonResponse = await fetch(JSON_DATA_PATH);
+            if (jsonResponse.ok) {
+                const jsonData = await jsonResponse.json();
+                fileData = [...fileData, ...jsonData];
+                console.log(`Loaded ${jsonData.length} entries from JSON file`);
+            }
+        } catch (jsonError) {
+            console.log('JSON file not loaded:', jsonError.message);
+        }
+
+        // Try loading CSV file
+        try {
+            const csvResponse = await fetch(CSV_DATA_PATH);
+            if (csvResponse.ok) {
+                const csvText = await csvResponse.text();
+                const csvData = parseCSVText(csvText);
+                fileData = [...fileData, ...csvData];
+                console.log(`Loaded ${csvData.length} entries from CSV file`);
+            }
+        } catch (csvError) {
+            console.log('CSV file not loaded:', csvError.message);
+        }
 
         // Load data from localStorage
         const localData = getLocalStorageData();
 
-        // Merge both datasets
-        const combinedData = [...jsonData, ...localData];
+        // Merge all datasets
+        const combinedData = [...fileData, ...localData];
 
-        console.log(`Loaded ${jsonData.length} entries from JSON and ${localData.length} from localStorage`);
+        console.log(`Total loaded: ${fileData.length} from files + ${localData.length} from localStorage = ${combinedData.length} total entries`);
 
         return combinedData;
     } catch (error) {
         console.error('Error loading data:', error);
 
-        // Fallback to localStorage only if JSON fails
+        // Fallback to localStorage only if all files fail
         return getLocalStorageData();
     }
+}
+
+/**
+ * Parse CSV text into array of objects
+ * @param {string} csvText - CSV text content
+ * @returns {Array} Array of entry objects
+ */
+function parseCSVText(csvText) {
+    const lines = csvText.split('\n').filter(line => line.trim());
+
+    if (lines.length < 2) {
+        return [];
+    }
+
+    // Parse header
+    const headers = parseCSVLine(lines[0]);
+
+    // Parse data rows
+    const entries = [];
+    for (let i = 1; i < lines.length; i++) {
+        const values = parseCSVLine(lines[i]);
+
+        if (values.length === 0) continue;
+
+        const entry = {};
+        headers.forEach((header, index) => {
+            const key = header.toLowerCase().trim();
+            entry[key] = values[index] ? values[index].trim() : '';
+        });
+
+        // Convert plays to number
+        if (entry.plays) {
+            entry.plays = parseInt(entry.plays);
+        }
+
+        // Ensure album exists
+        if (!entry.album || entry.album.trim() === '') {
+            entry.album = 'Unknown Album';
+        }
+
+        entries.push(entry);
+    }
+
+    return entries;
+}
+
+/**
+ * Parse a CSV line, handling quoted values
+ * @param {string} line - CSV line to parse
+ * @returns {Array<string>} Array of values
+ */
+function parseCSVLine(line) {
+    const values = [];
+    let currentValue = '';
+    let insideQuotes = false;
+
+    for (let i = 0; i < line.length; i++) {
+        const char = line[i];
+        const nextChar = line[i + 1];
+
+        if (char === '"') {
+            if (insideQuotes && nextChar === '"') {
+                currentValue += '"';
+                i++;
+            } else {
+                insideQuotes = !insideQuotes;
+            }
+        } else if (char === ',' && !insideQuotes) {
+            values.push(currentValue);
+            currentValue = '';
+        } else {
+            currentValue += char;
+        }
+    }
+
+    values.push(currentValue);
+    return values;
 }
 
 /**

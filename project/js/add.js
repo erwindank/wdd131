@@ -304,6 +304,25 @@ function setupFileUpload() {
     showFormatBtn.addEventListener('click', () => {
         formatInstructions.classList.toggle('hidden');
     });
+
+    // Check saved data button
+    const checkDataBtn = document.getElementById('checkDataBtn');
+    checkDataBtn.addEventListener('click', () => {
+        const localData = getLocalStorageData();
+        console.log('=== LOCALSTORAGE DATA ===');
+        console.log(`Total entries: ${localData.length}`);
+        console.log('First 3 entries:', localData.slice(0, 3));
+        console.log('Last 3 entries:', localData.slice(-3));
+
+        alert(`Found ${localData.length} entries in localStorage. Check console for details.`);
+
+        // Also test loadData
+        loadData().then(data => {
+            console.log('=== COMBINED DATA (JSON + localStorage) ===');
+            console.log(`Total combined entries: ${data.length}`);
+            console.log('Sample entries:', data.slice(0, 3));
+        });
+    });
 }
 
 /**
@@ -543,7 +562,14 @@ function importEntries(entries) {
 
     // Save updated data
     if (result.successful > 0) {
-        saveData(localData);
+        const saved = saveData(localData);
+        console.log(`Import complete: ${result.successful} entries saved to localStorage`);
+        console.log('Sample entry:', localData[localData.length - 1]);
+        console.log('Total entries in localStorage:', localData.length);
+
+        if (!saved) {
+            console.error('Failed to save to localStorage!');
+        }
     }
 
     return result;
