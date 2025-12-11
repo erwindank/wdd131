@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="View your top music charts - Top 10, Top 20, and Top 100 songs of 2025">
+    <title>Charts - My 2025 Music Listening Charts</title>
+
+    <!-- Preload fonts for performance -->
+    <link rel="preload"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Roboto:wght@300;400;500&display=swap"
+        as="style">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <!-- Header with Navigation -->
+    <header>
+        <div class="container">
+            <h1>🎵 My 2025 Music Charts</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="charts.html" class="active">Charts</a></li>
+                    <li><a href="add.html">Add Entry</a></li>
+                    <li><a href="references.html">References</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Page Header -->
+        <section class="hero">
+            <h1>Your Top Charts</h1>
+            <p>
+                Discover your most played songs of 2025. Switch between
+                Top 10, Top 20, and Top 100 views.
+            </p>
+        </section>
+
+        <!-- Charts Section -->
+        <section>
+            <h2>Charts</h2>
+
+            <!-- Chart Controls -->
+            <div class="chart-controls">
+                <button class="chart-btn active" data-chart="10">Top 10</button>
+                <button class="chart-btn" data-chart="20">Top 20</button>
+                <button class="chart-btn" data-chart="100">Top 100</button>
+            </div>
+
+            <!-- Chart Display Area -->
+            <div id="chartDisplay">
+                <div class="loading">Loading charts</div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 My Music Listening Charts</p>
+        <p>
+            <a href="references.html">References & Credits</a> |
+            <a href="https://github.com" target="_blank" rel="noopener">GitHub</a>
+        </p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+    <script src="js/charts.js"></script>
+</body>
+
+</html>

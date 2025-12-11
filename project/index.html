@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Track and explore your 2025 music listening statistics and charts">
+    <title>My 2025 Music Listening Charts - Home</title>
+
+    <!-- Preload fonts for performance -->
+    <link rel="preload"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Roboto:wght@300;400;500&display=swap"
+        as="style">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <!-- Header with Navigation -->
+    <header>
+        <div class="container">
+            <h1>🎵 My 2025 Music Charts</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="charts.html">Charts</a></li>
+                    <li><a href="add.html">Add Entry</a></li>
+                    <li><a href="references.html">References</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1>Welcome to My 2025 Music Journey</h1>
+            <p>
+                Track every song, discover your listening patterns, and explore
+                your musical year through interactive charts and statistics.
+            </p>
+        </section>
+
+        <!-- Statistics Grid -->
+        <div class="stats-grid" id="statsGrid">
+            <div class="stat-card">
+                <span class="stat-value" id="totalPlays">--</span>
+                <span class="stat-label">Total Plays</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-value" id="uniqueSongs">--</span>
+                <span class="stat-label">Unique Songs</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-value" id="uniqueArtists">--</span>
+                <span class="stat-label">Unique Artists</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-value" id="totalEntries">--</span>
+                <span class="stat-label">Total Entries</span>
+            </div>
+        </div>
+
+        <!-- Recent Plays Section -->
+        <section>
+            <h2>Recent Plays</h2>
+            <ul class="recent-plays-list" id="recentPlaysList">
+                <li class="loading">Loading recent plays</li>
+            </ul>
+        </section>
+
+        <!-- Quick Links -->
+        <section>
+            <h2>Explore More</h2>
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                <a href="charts.html" class="btn">View Top Charts</a>
+                <a href="add.html" class="btn">Add New Entry</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 My Music Listening Charts</p>
+        <p>
+            <a href="references.html">References & Credits</a> |
+            <a href="https://github.com" target="_blank" rel="noopener">GitHub</a>
+        </p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+    <script>
+        /**
+         * index.html specific JavaScript
+         * Loads and displays statistics and recent plays
+         */
+
+        // Wait for DOM to be ready
+        document.addEventListener('DOMContentLoaded', async () => {
+            console.log('Index page loaded');
+
+            try {
+                // Load data
+                const data = await loadData();
+                console.log(`Loaded ${data.length} total entries`);
+
+                // Display statistics
+                displayStats(data);
+
+                // Display recent plays
+                displayRecentPlays(data);
+
+            } catch (error) {
+                console.error('Error initializing page:', error);
+                showError();
+            }
+        });
+
+        /**
+         * Display statistics in the stats grid
+         */
+        function displayStats(data) {
+            const stats = getStats(data);
+
+            // Update stat cards with animation
+            animateValue('totalPlays', 0, stats.totalPlays, 1000);
+            animateValue('uniqueSongs', 0, stats.uniqueSongs, 1000);
+            animateValue('uniqueArtists', 0, stats.uniqueArtists, 1000);
+            animateValue('totalEntries', 0, stats.totalEntries, 1000);
+        }
+
+        /**
+         * Animate number counting up
+         */
+        function animateValue(elementId, start, end, duration) {
+            const element = document.getElementById(elementId);
+            if (!element) return;
+
+            const range = end - start;
+            const increment = range / (duration / 16); // 60fps
+            let current = start;
+
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= end) {
+                    current = end;
+                    clearInterval(timer);
+                }
+                element.textContent = formatNumber(Math.floor(current));
+            }, 16);
+        }
+
+        /**
+         * Display recent plays list
+         */
+        function displayRecentPlays(data) {
+            const listElement = document.getElementById('recentPlaysList');
+
+            if (!listElement) return;
+
+            // Get recent plays
+            const recentPlays = getRecentPlays(data, 5);
+
+            if (recentPlays.length === 0) {
+                listElement.innerHTML = '<li class="recent-play-item">No plays recorded yet. <a href="add.html">Add your first entry!</a></li>';
+                return;
+            }
+
+            // Generate HTML using template literals
+            const html = recentPlays.map(entry => `
+                <li class="recent-play-item">
+                    <strong>${escapeHtml(entry.song)}</strong>
+                    <div class="artist">by ${escapeHtml(entry.artist)}</div>
+                    <div class="meta">
+                        <span>🎵 ${formatNumber(entry.plays)} plays</span>
+                        ${entry.album ? `<span>💿 ${escapeHtml(entry.album)}</span>` : ''}
+                        <span>📅 ${formatDateTime(entry.datetime)}</span>
+                    </div>
+                </li>
+            `).join('');
+
+            listElement.innerHTML = html;
+        }
+
+        /**
+         * Escape HTML to prevent XSS
+         */
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        /**
+         * Show error message
+         */
+        function showError() {
+            const main = document.querySelector('main');
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'message error';
+            errorDiv.textContent = 'Error loading data. Please refresh the page.';
+            main.insertBefore(errorDiv, main.firstChild);
+        }
+    </script>
+</body>
+
+</html>

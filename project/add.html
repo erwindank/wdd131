@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Add a new music listening entry to your 2025 charts">
+    <title>Add Entry - My 2025 Music Listening Charts</title>
+
+    <!-- Preload fonts for performance -->
+    <link rel="preload"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Roboto:wght@300;400;500&display=swap"
+        as="style">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <!-- Header with Navigation -->
+    <header>
+        <div class="container">
+            <h1>🎵 My 2025 Music Charts</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="charts.html">Charts</a></li>
+                    <li><a href="add.html" class="active">Add Entry</a></li>
+                    <li><a href="references.html">References</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Page Header -->
+        <section class="hero">
+            <h1>Add New Entry</h1>
+            <p>
+                Manually add a new listening entry to your music charts.
+                All fields except album are required.
+            </p>
+        </section>
+
+        <!-- Add Entry Form -->
+        <section>
+            <h2>Entry Details</h2>
+
+            <!-- Message container for success/error messages -->
+            <div id="messageContainer"></div>
+
+            <!-- Form -->
+            <form id="addEntryForm">
+                <!-- Song Title -->
+                <div class="form-group">
+                    <label for="songTitle">
+                        Song Title <span style="color: var(--error);">*</span>
+                    </label>
+                    <input type="text" id="songTitle" name="songTitle" placeholder="Enter song title" required
+                        autocomplete="off">
+                </div>
+
+                <!-- Artist Name -->
+                <div class="form-group">
+                    <label for="artistName">
+                        Artist Name <span style="color: var(--error);">*</span>
+                    </label>
+                    <input type="text" id="artistName" name="artistName" placeholder="Enter artist name" required
+                        autocomplete="off">
+                </div>
+
+                <!-- Album Name (Optional) -->
+                <div class="form-group">
+                    <label for="albumName">
+                        Album Name <span style="color: var(--text-secondary);">(optional)</span>
+                    </label>
+                    <input type="text" id="albumName" name="albumName" placeholder="Enter album name"
+                        autocomplete="off">
+                </div>
+
+                <!-- Play Count -->
+                <div class="form-group">
+                    <label for="playCount">
+                        Play Count <span style="color: var(--error);">*</span>
+                    </label>
+                    <input type="number" id="playCount" name="playCount" placeholder="Number of plays" min="1" value="1"
+                        required>
+                </div>
+
+                <!-- Date -->
+                <div class="form-group">
+                    <label for="entryDate">
+                        Date <span style="color: var(--error);">*</span>
+                    </label>
+                    <input type="date" id="entryDate" name="entryDate" required>
+                </div>
+
+                <!-- Time -->
+                <div class="form-group">
+                    <label for="entryTime">
+                        Time <span style="color: var(--error);">*</span>
+                    </label>
+                    <input type="time" id="entryTime" name="entryTime" required>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" id="submitBtn">
+                    Add Entry
+                </button>
+
+                <!-- Reset Button -->
+                <button type="button" id="resetBtn"
+                    style="background-color: var(--bg-primary); color: var(--text-primary); border: 1px solid var(--border);">
+                    Reset Form
+                </button>
+            </form>
+        </section>
+
+        <!-- Import from File -->
+        <section>
+            <h2>Import from File</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 1rem;">
+                Upload a JSON or CSV file to import multiple entries at once.
+                <button type="button" id="showFormatBtn"
+                    style="background: none; border: none; color: var(--accent); text-decoration: underline; cursor: pointer; padding: 0;">
+                    View expected formats
+                </button>
+            </p>
+
+            <!-- Format Instructions (hidden by default) -->
+            <div id="formatInstructions" class="hidden"
+                style="background: var(--bg-primary); padding: 1rem; border-radius: var(--radius-md); margin-bottom: 1rem; border: 1px solid var(--border);">
+                <h3 style="margin-top: 0;">Expected File Formats</h3>
+
+                <h4>JSON Format:</h4>
+                <pre style="background: #000; padding: 1rem; border-radius: 4px; overflow-x: auto; font-size: 0.85rem;">
+[
+  {
+    "song": "Song Title",
+    "artist": "Artist Name",
+    "album": "Album Name",
+    "plays": 100,
+    "datetime": "2025-01-01T14:30"
+  }
+]</pre>
+
+                <h4>CSV Format:</h4>
+                <pre style="background: #000; padding: 1rem; border-radius: 4px; overflow-x: auto; font-size: 0.85rem;">
+song,artist,album,plays,datetime
+"Song Title","Artist Name","Album Name",100,"2025-01-01T14:30"
+"Another Song","Another Artist","Album",50,"2025-01-02T10:00"</pre>
+
+                <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem;">
+                    <strong>Note:</strong> All fields except album are required. The datetime should be in ISO format
+                    (YYYY-MM-DDTHH:MM).
+                </p>
+            </div>
+
+            <!-- File Upload Form -->
+            <div id="uploadMessageContainer"></div>
+
+            <div class="form-group">
+                <label for="fileInput">
+                    Select File (JSON or CSV)
+                </label>
+                <input type="file" id="fileInput" accept=".json,.csv" style="padding: 0.75rem;">
+            </div>
+
+            <button type="button" id="uploadBtn" disabled>
+                Import File
+            </button>
+
+            <!-- Import Summary -->
+            <div id="importSummary" class="hidden"
+                style="margin-top: 1rem; padding: 1rem; background: var(--bg-primary); border-radius: var(--radius-md); border: 1px solid var(--border);">
+                <h3 style="margin-top: 0; color: var(--accent);">Import Summary</h3>
+                <div id="importSummaryContent"></div>
+            </div>
+        </section>
+
+        <!-- Recent Additions -->
+        <section id="recentAdditions" class="hidden">
+            <h2>Recently Added</h2>
+            <ul id="recentAdditionsList" class="recent-plays-list"></ul>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 My Music Listening Charts</p>
+        <p>
+            <a href="references.html">References & Credits</a> |
+            <a href="https://github.com" target="_blank" rel="noopener">GitHub</a>
+        </p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+    <script src="js/add.js"></script>
+</body>
+
+</html>
