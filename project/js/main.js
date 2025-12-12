@@ -84,6 +84,11 @@ function parseCSVText(csvText) {
             entry.album = 'Unknown Album';
         }
 
+        // Convert datetime from "11 Dec 2025, 20:52" to ISO format "2025-12-11T20:52"
+        if (entry.datetime) {
+            entry.datetime = convertDateTimeToISO(entry.datetime);
+        }
+
         entries.push(entry);
     }
 
@@ -121,6 +126,35 @@ function parseCSVLine(line) {
 
     values.push(currentValue);
     return values;
+}
+
+/**
+ * Convert datetime from "11 Dec 2025, 20:52" to ISO format "2025-12-11T20:52"
+ * @param {string} dateStr - Date string in format "DD MMM YYYY, HH:MM"
+ * @returns {string} ISO format datetime string
+ */
+function convertDateTimeToISO(dateStr) {
+    try {
+        // Parse "11 Dec 2025, 20:52"
+        const date = new Date(dateStr);
+
+        if (isNaN(date.getTime())) {
+            // If parsing failed, return original
+            return dateStr;
+        }
+
+        // Convert to ISO format YYYY-MM-DDTHH:MM
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        const hours = String(date.getHours()).padStart(2, '0');
+        const minutes = String(date.getMinutes()).padStart(2, '0');
+
+        return `${year}-${month}-${day}T${hours}:${minutes}`;
+    } catch (error) {
+        console.error('Error converting date:', error);
+        return dateStr;
+    }
 }
 
 /**
