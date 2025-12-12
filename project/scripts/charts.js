@@ -162,8 +162,9 @@ function generateChartTable(songs) {
  * @returns {string} Escaped HTML
  */
 function escapeHtml(text) {
+    if (!text) return '';
     const div = document.createElement('div');
-    div.textContent = text;
+    div.textContent = String(text);
     return div.innerHTML;
 }
 
