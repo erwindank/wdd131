@@ -8,7 +8,6 @@
 // ================================================
 
 const STORAGE_KEY = 'musicListeningData2025';
-const JSON_DATA_PATH = 'data/2025.json';
 const CSV_DATA_PATH = 'data/scrobbles-erwindank-1765486344.csv';
 
 // ================================================
@@ -16,54 +15,35 @@ const CSV_DATA_PATH = 'data/scrobbles-erwindank-1765486344.csv';
 // ================================================
 
 /**
- * Load data from JSON/CSV files and localStorage
- * Merges all sources into a single dataset
+ * Load data from CSV file and localStorage
+ * Merges both sources into a single dataset
  * @returns {Promise<Array>} Combined array of listening data
  */
 async function loadData() {
     let fileData = [];
 
     try {
-        // Try loading JSON file first
-        try {
-            const jsonResponse = await fetch(JSON_DATA_PATH);
-            if (jsonResponse.ok) {
-                const jsonData = await jsonResponse.json();
-                fileData = [...fileData, ...jsonData];
-                console.log(`Loaded ${jsonData.length} entries from JSON file`);
-            }
-        } catch (jsonError) {
-            console.log('JSON file not loaded:', jsonError.message);
+        // Load CSV file
+        const csvResponse = await fetch(CSV_DATA_PATH);
+        if (csvResponse.ok) {
+            const csvText = await csvResponse.text();
+            const csvData = parseCSVText(csvText);
+            fileData = csvData;
+            console.log(`Loaded ${csvData.length} entries from CSV file`);
         }
-
-        // Try loading CSV file
-        try {
-            const csvResponse = await fetch(CSV_DATA_PATH);
-            if (csvResponse.ok) {
-                const csvText = await csvResponse.text();
-                const csvData = parseCSVText(csvText);
-                fileData = [...fileData, ...csvData];
-                console.log(`Loaded ${csvData.length} entries from CSV file`);
-            }
-        } catch (csvError) {
-            console.log('CSV file not loaded:', csvError.message);
-        }
-
-        // Load data from localStorage
-        const localData = getLocalStorageData();
-
-        // Merge all datasets
-        const combinedData = [...fileData, ...localData];
-
-        console.log(`Total loaded: ${fileData.length} from files + ${localData.length} from localStorage = ${combinedData.length} total entries`);
-
-        return combinedData;
-    } catch (error) {
-        console.error('Error loading data:', error);
-
-        // Fallback to localStorage only if all files fail
-        return getLocalStorageData();
+    } catch (csvError) {
+        console.log('CSV file not loaded:', csvError.message);
     }
+
+    // Load data from localStorage
+    const localData = getLocalStorageData();
+
+    // Merge both datasets
+    const combinedData = [...fileData, ...localData];
+
+    console.log(`Total loaded: ${fileData.length} from CSV + ${localData.length} from localStorage = ${combinedData.length} total entries`);
+
+    return combinedData;
 }
 
 /**
