@@ -2,9 +2,6 @@
    My 2025 Music Listening Charts - Main Styles
    ================================================ */
 
-/* Font Imports */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Roboto:wght@300;400;500&display=swap');
-
 /* ================================================
    CSS Variables & Reset
    ================================================ */
@@ -677,6 +674,7 @@ select:focus {
         display: none;
     }
 }
+
 /* ================================================
    Site Plan Page Styles
    ================================================ */
