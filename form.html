@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Product Review Form</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <script src="js/form.js" defer></script>
+</head>
+
+<body>
+    <header class="site-header">
+        <h1>Product Review</h1>
+        <p class="subtitle">Tell us about your experience</p>
+    </header>
+
+    <main class="container">
+        <form class="review-form" method="get" action="review.html" novalidate>
+            <section class="form-section" aria-labelledby="product-section">
+                <h2 id="product-section" class="section-title">Product Details</h2>
+
+                <div class="field">
+                    <label for="product">Product Name<span aria-hidden="true">*</span></label>
+                    <select id="product" name="product" required>
+                        <option value="" disabled selected>Select a Product ...</option>
+                    </select>
+                </div>
+
+                <fieldset class="field">
+                    <legend>Overall Rating<span aria-hidden="true">*</span></legend>
+                    <div class="rating" role="radiogroup" aria-label="Overall Rating">
+                        <label for="rating-1" class="rating-option">
+                            <input type="radio" id="rating-1" name="rating" value="1" required />
+                            <span aria-hidden="true">★</span>
+                            <span class="sr-only">1 star</span>
+                        </label>
+                        <label for="rating-2" class="rating-option">
+                            <input type="radio" id="rating-2" name="rating" value="2" required />
+                            <span aria-hidden="true">★★</span>
+                            <span class="sr-only">2 stars</span>
+                        </label>
+                        <label for="rating-3" class="rating-option">
+                            <input type="radio" id="rating-3" name="rating" value="3" required />
+                            <span aria-hidden="true">★★★</span>
+                            <span class="sr-only">3 stars</span>
+                        </label>
+                        <label for="rating-4" class="rating-option">
+                            <input type="radio" id="rating-4" name="rating" value="4" required />
+                            <span aria-hidden="true">★★★★</span>
+                            <span class="sr-only">4 stars</span>
+                        </label>
+                        <label for="rating-5" class="rating-option">
+                            <input type="radio" id="rating-5" name="rating" value="5" required />
+                            <span aria-hidden="true">★★★★★</span>
+                            <span class="sr-only">5 stars</span>
+                        </label>
+                    </div>
+                </fieldset>
+
+                <div class="field">
+                    <label for="install-date">Date of Installation<span aria-hidden="true">*</span></label>
+                    <input type="date" id="install-date" name="installDate" required />
+                </div>
+            </section>
+
+            <section class="form-section" aria-labelledby="features-section">
+                <h2 id="features-section" class="section-title">Product Feedback</h2>
+
+                <fieldset class="field">
+                    <legend>Useful Features</legend>
+                    <div class="checkbox-grid">
+                        <label for="feature-speed">
+                            <input type="checkbox" id="feature-speed" name="features" value="speed" />
+                            Speed
+                        </label>
+                        <label for="feature-durability">
+                            <input type="checkbox" id="feature-durability" name="features" value="durability" />
+                            Durability
+                        </label>
+                        <label for="feature-design">
+                            <input type="checkbox" id="feature-design" name="features" value="design" />
+                            Design
+                        </label>
+                        <label for="feature-ease">
+                            <input type="checkbox" id="feature-ease" name="features" value="ease" />
+                            Ease of Use
+                        </label>
+                        <label for="feature-value">
+                            <input type="checkbox" id="feature-value" name="features" value="value" />
+                            Value
+                        </label>
+                    </div>
+                </fieldset>
+
+                <div class="field">
+                    <label for="review">Written Review</label>
+                    <textarea id="review" name="review" rows="4" placeholder="Share any details you want..."></textarea>
+                </div>
+
+                <div class="field">
+                    <label for="username">Your Name</label>
+                    <input type="text" id="username" name="username" autocomplete="name" />
+                </div>
+            </section>
+
+            <div class="form-actions">
+                <input type="submit" value="Submit Review" />
+            </div>
+        </form>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; 2026 WDD 131 Product Reviews</p>
+    </footer>
+</body>
+
+</html>
